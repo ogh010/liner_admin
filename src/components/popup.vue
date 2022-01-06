@@ -6,7 +6,6 @@
                     <!-- 레이어 내용 -->
                     <div class="layerIn autoHeight">
                         <div class="layerHd">
-                            <i class="fas fa-times rm"></i>
                         </div>
                         <div class="layerCnt autoHeight">
                             <div class="lyIn">

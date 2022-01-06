@@ -1,6 +1,11 @@
 @charset "utf-8";
-
-.wrap{width: 100%; margin: auto;}
+@font-face {
+    font-family: 'S-CoreDream-3Light';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+.wrap{width: 100%; margin: auto; font-family: 'S-CoreDream-3Light';}
 
 .header{width: 100%; height: 60px; background-color: #000;box-sizing: border-box;}
 .header .logo{background-image: url('../img/logo.png'); width:114px; height: 60px; background-size: contain; background-repeat: no-repeat; background-position: center ;}
@@ -9,14 +14,14 @@
 .header .nav ul{display: flex; justify-content: flex-start; align-items: center; height: 60px;}
 .header .nav ul li{}
 .header .nav ul li a{color: #E4B95D; font-size: 16px; padding: 20px; cursor: pointer;position: relative;}
-.header .nav ul li.on a::after{content: ""; display: inline-block; width: 100%; height:4px ;background-color: #E4B95D; position: absolute; bottom: -1px; left: 0;}
+.header .nav ul li.on a::after{content: ""; display: inline-block; width: 100%; height:4px ;background-color: #E4B95D; position: absolute; bottom: 1px; left: 0;}
 
 
 .content{} 
 .inner{width: 1550px; margin: auto}
 .content h2{text-align: center; font-size: 22px; padding: 50px 0} 
 
-.section01{background-color:#F5F7FA;}
+.section01{background-color:rgb(237, 243, 248);}
 input::-ms-clear {display: none;}
 .section01 input{font-size: 14px; height:36px; padding: 0 12px; border:1px solid #d9d9d9; vertical-align: top; width: 150px}
 .section01 input:active{border: 2px solid #E4B95D !important;}
@@ -50,6 +55,7 @@ input::-ms-clear {display: none;}
 .table tbody th, .table tbody td {border-left:1px solid #e5e5e5; border-bottom:1px solid #e5e5e5;}
 .table tbody th {font-weight:bold; background:#f2f2f2;}
 .table tbody td.txtr {padding-right:10px;}
+.table tbody tr:hover{background-color: rgba(240, 248, 255, 0.452);}
 /* .table tbody td.txtl {padding-left:10px;} */
 
 .table.hz th, .table.hz td {padding:12px 18px 12px;font-size:13px; text-align:left; letter-spacing:-0.7px; border-left:none;word-break: break-all;}
@@ -60,10 +66,10 @@ input::-ms-clear {display: none;}
 .table tbody tr td:nth-child(3) p{text-decoration: underline; text-underline-position: under; cursor: pointer; }
 .table tbody tr td:nth-child(3) p:hover{color:#E4B95D ; }
 .table .TBselect select{border: none; background:#eceded; box-shadow: none;}
-.table .btn{background-color: #E4B95D; border: none; padding:7px 20px;}
+.table .btn{background-color: #E4B95D; border: none; padding:7px 20px; transition: 0.2s}
 .table .btn:hover{color:#E4B95D ; background-color: #000; cursor: pointer;}
 /* paging */
-.page_nav {position:relative; padding:0 30px; margin-top:20px; text-align:center; display: flex; justify-content: center; align-items: center; margin-bottom:20px;}
+.page_nav {position:relative; padding:0 30px; margin-top:20px; text-align:center; display: flex; justify-content: center; align-items: center; margin-bottom:20px; }
 .page_nav ul{display: flex; justify-content: center;}
 .page_nav ul li{width: 30px; height: 30px; margin: 5px; line-height: 30px; background-color: #E4B95D; border-radius: 200px; font-size: 14px; text-align: center; font-weight: 500; cursor: pointer}
 .page_nav .prev{background-image: url(../img/btn_page_back.png); width: 30px; height: 30px; background-repeat: no-repeat; background-position: center; background-size: contain; cursor: pointer}
@@ -71,10 +77,10 @@ input::-ms-clear {display: none;}
 .page_nav ul li.on{background-color:#000; color:#E4B95D ;  }
 
 /*popup.html*/
-.layerWrap{display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 99999999; width:100%; height:100%; overflow: hidden;}
+.layerWrap{display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 99999999; width:100%; height:100%; overflow: hidden; font-family: 'S-CoreDream-3Light';}
 .layerWrap .layerRow{display: table; table-layout: fixed; width:25%; height:100%; margin: 0 auto;}
 .layerWrap .layerCell{display: table-cell; text-align: center; vertical-align: middle; }
-.layerWrap .layerHd{display: flex; justify-content: flex-end; padding:10px 10px 0 0}
+.layerWrap .layerHd{display: flex; justify-content: space-between; padding:10px}
 .layerWrap .layerIn{padding:0px; background: #fff;}
 .layerWrap .layerCnt{font-size: 20px; line-height: 24px; width:100%; height: 568px; overflow: hidden; overflow-y: auto;}
 .layerWrap .layerCnt.autoHeight {height:auto;}
@@ -90,6 +96,26 @@ input::-ms-clear {display: none;}
 .layerWrap .btn.close{position: absolute; right:20px; top:18px; z-index: 1; }
 .layerWrap .btn.close span{font-size: 18px; line-height: 22px; }    
         
+/* 알바리스트 팝업 */
+
+.layerWrap .WL .layerHd{display: flex; justify-content: space-between; padding:20px 20px 0 20px}
+.layerWrap .WL .layerHd h2{font-size: 20px; padding: 0;}
+.layerWrap .WL .layerHd i{font-size: 30px; cursor: pointer; transition: 0.2s}
+.layerWrap .WL .layerHd i:hover{color: #E4B95D;}
+.layerWrap .WL .layerCnt .lyIn .tableBox{height: 500px; overflow-y: scroll; padding-top: 0;}
+.layerWrap .WL .layerCnt .lyIn .tableBox thead{position: sticky; top: 0;}
+.layerWrap .WL{display: table; table-layout: fixed; width:900px; height:100%; margin: 0 auto;}
+.layerWrap .WL .lyIn p{text-align: center; color: #0d0d0d; padding: 10px 0; font-size: 14px; line-height: 30px}
+.WL .searchBox{display: flex; justify-content: center; padding: 30px 0; align-items: center; height: 50px; margin: 20px 0 0 0;}
+.WL .searchBox .search-col{position: relative; margin: 0 15px;}
+.WL .searchBox .search-col span{position: absolute; top: -20px; display: block; font-size: 14px}
+.WL .searchBox .search-col .input{font-size: 14px;}
+.WL .searchBox .btn{border: none; padding: 7px 40px; border-radius: 20px; background-color: #E4B95D; font-size: 16px; font-weight: 500; cursor: pointer; transition: 0.2s}
+.WL .searchBox .btn:hover{background-color: #000; color: #E4B95D;}
+.WL input:active{border: 2px solid #E4B95D !important;}
+.WL input:focus{border: 2px solid #E4B95D !important;}
+
+
 #dim{display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 10000; width:100%; height:100%; background: rgba(0,0,0,.4); font-family: inherit; overflow: hidden; }
 #dim.transparentDim {background:none;}
 .btn.pu{color:#fff; border:1px solid #000; background: #000; padding: 15px 0; font-size: 18px; font-weight: bold}
@@ -161,20 +187,28 @@ input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner
 .bottom_btn .list{background-color: #484848; color: #fff}
 .bottom_btn .btn:hover{background-color:#000; color:#E4B95D ;  }
 
-/* login */
-.content .loginBox{background-color:#F5F7FA; position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%);
-padding: 100px 30px; width: 520px;}
-
-.content .loginBox .linner{ text-align: center; width: 100%;}
-.content .loginBox .input{display: block; padding: 10px 15px; margin: auto; margin-bottom: 15px; width: 300px;}
-.content .loginBox .btn{border: none; background-color: #000; color:#E4B95D; padding: 10px 15px ; width: 300px; }
 
 /* vuetify */
 .v-text-field{padding-top: 0 !important;}
 .v-text-field__details{display: none !important;}
 .v-application p{margin-bottom: 0 !important; }
 .v-application ul, .v-application ol{padding-left:0 !important}
-
+.theme--light.v-input input, .theme--light.v-input textarea{background-color: #fff !important;}
+/*login*/
+.login{}
+.lIner .logo{display: block; width:114px; height: 60px; background-color: #000; position: absolute; top: 0px; left: 0; background-image: url('../img/logo.png'); background-position: center; background-repeat: no-repeat; background-size: contain}
+.lIner{width: 820px; background-color: #F5F7FA; position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%); padding: 120px 50px; display: flex; align-items: center; justify-content: space-around}
+.lIner .loginBox{width:600px}
+.lIner .loginBox .box{width: 100%; display: flex; justify-content: flex-start; align-items: center; margin: 20px 0}
+.lIner .loginBox .box span{display: inline-block; width: 20%; color: #000}
+.lIner .loginBox .box .input{padding: 25px 15px; width: 70%; border: 2px solid #F5F7FA;}
+.lIner .btn{width:140px; height: 120px; border: none; background-color:#E4B95D; cursor: pointer; transition: 0.3s}
+.lIner .btn:hover{background-color:#000; color: #E4B95D }
+.lIner input:active{border: 2px solid #E4B95D !important;}
+.lIner input:focus{border: 2px solid #E4B95D !important;}
+.daram{background-image: url('../img/daramdaram.jpg'); background-size: contain; width: 60px; height: 70px; background-repeat: no-repeat;
+    background-position: center; position: fixed; bottom: 50px; right: 100px;}    
+.daram01{ top: 129px; right: px;}
 
 
 

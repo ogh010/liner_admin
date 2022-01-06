@@ -9,8 +9,8 @@
                                 <a>거래관리</a>
                             </router-link>
                         </li>
-                        <li :class="{'on':this.$route.path=='/albamon'}">
-                            <router-link to="/albamon">
+                        <li :class="{'on':this.$route.path=='/worker'}">
+                            <router-link to="/worker">
                                 <a>알바관리</a>
                             </router-link>
                         </li>

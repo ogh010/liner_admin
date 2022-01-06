@@ -1,0 +1,95 @@
+<template>
+    <div class="tableBox">
+        <table class="table">
+            <colgroup>
+                <col style="width:10%;" />
+                <col style="width:10%;" />
+                <col style="width:10%;" />
+                <col style="width:14%;" />
+                <col style="width:11%;" />
+                <col style="width:11%;" />
+                <col style="width:11%;" />
+                <col style="width:11%;" />
+                <col style="width:12%;" />
+            </colgroup>
+            <thead>
+                <tr>
+                    <th>주문일시</th>
+                    <th>서비스일시</th>
+                    <th>주문번호</th>
+                    <th>장소</th>
+                    <th>이용시간</th>
+                    <th>구매자</th>
+                    <th>연락처</th>
+                    <th>주문상태</th>
+                    <th>배정알바</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="line_hl" v-for="(order,index) in this.orderList" :key="index">
+                    <td>
+                        <p>{{order.orderTime}}</p>
+                    </td>
+                    <td>
+                        <p>{{order.serviceTime}}</p>
+                    </td>
+                    <td>
+                        <p>{{order.orderCode}}</p>
+                    </td>
+                    <td>
+                        <p>{{order.place}}</p>
+                    </td>
+                    <td>
+                        <p>{{order.beginTime}} ~ {{order.endTime}}</p>
+                    </td>
+                    <td>
+                        <p>{{order.name}}</p>
+                    </td>
+                    <td>
+                        <p>{{order.phone}}</p>
+                    </td>
+                    <td>
+                        <p v-if="order.state==0">서비스 신청</p>
+                        <p v-if="order.state==1">입금 완료</p>
+                        <p v-if="order.state==2">배정중</p>
+                        <p v-if="order.state==3">진행중</p>
+                        <p v-if="order.state==4">완료</p>
+                    </td>
+                    <td>
+                        <template v-if="order.workerInfo">
+                            <p>{{order.workerInfo}}</p>
+                        </template>
+                        <template v-else>
+                            <button type="button" class="btn" @click="workerAssignPopup()">배정하기</button>
+                        </template>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <WorkerListPopup v-if="is_show"/>
+    </div>
+</template>
+<script>
+import { mapMutations, mapState } from 'vuex'
+import WorkerListPopup from '@/components/order/WorkerListPopup.vue'
+
+export default {
+    data:()=>({
+    }),
+    methods: {
+        ...mapMutations('order',['SET_TOGGLE_POPUP']),
+        workerAssignPopup(){
+            this.SET_TOGGLE_POPUP()
+        },
+    },
+    components: {
+        WorkerListPopup
+    },
+    computed: {
+        ...mapState('order',['orderList','is_show']),
+    },
+}
+</script>
+<style scoped>
+
+</style>
