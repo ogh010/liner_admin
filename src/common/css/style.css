@@ -52,7 +52,7 @@ input::-ms-clear {display: none;}
 .table th, .table td {line-height:16px; text-align:center; font-size:13px; letter-spacing:-0.5px; word-break:keep-all; word-wrap:break-word; vertical-align:middle; height: 50px;}
 .table>thead>tr>th {line-height:16px; font-weight:bold; color:#1a1a1a; background:#eceded; border-left:1px solid #d9d9d9; border-bottom:1px solid #d9d9d9;}
 /* .table th:first-child, .table tbody td:first-child {border-left:none;} */
-.table tbody th, .table tbody td {border-left:1px solid #e5e5e5; border-bottom:1px solid #e5e5e5;}
+.table tbody th, .table tbody td {border-left:1px solid #e5e5e5; border-bottom:1px solid #e5e5e5; padding: 14px 0;}
 .table tbody th {font-weight:bold; background:#f2f2f2;}
 .table tbody td.txtr {padding-right:10px;}
 .table tbody tr:hover{background-color: rgba(240, 248, 255, 0.452);}
@@ -63,15 +63,20 @@ input::-ms-clear {display: none;}
 .table.hz tbody td.txtr {padding-right:20px;}
 .table.hz tbody td.txtl {padding-left:20px;}
 .table + .button {padding-top:20px;}
-.table tbody tr td:nth-child(3) p{text-decoration: underline; text-underline-position: under; cursor: pointer; }
-.table tbody tr td:nth-child(3) p:hover{color:#E4B95D ; }
+/* .table tbody tr td:nth-child(3) p{text-decoration: underline; text-underline-position: under; cursor: pointer; }
+.table tbody tr td:nth-child(3) p:hover{color:#E4B95D ; } */
 .table .TBselect select{border: none; background:#eceded; box-shadow: none;}
 .table .btn{background-color: #E4B95D; border: none; padding:7px 20px; transition: 0.2s}
 .table .btn:hover{color:#E4B95D ; background-color: #000; cursor: pointer;}
+.table .update{background-color: #000; border: none; padding:3px 10px; color: #E4B95D; margin: 0 2px 7px 2px;}
+.table .update:hover{background-color: #E4B95D; color: #000;}
+.table .complete{background-color: #E4B95D; border: none; padding:3px 10px; color: #000; margin: 0 2px 7px 2px;}
+.table .complete:hover{background-color: #000; color: #E4B95D;}
+
 /* paging */
 .page_nav {position:relative; padding:0 30px; margin-top:20px; text-align:center; display: flex; justify-content: center; align-items: center; margin-bottom:20px; }
 .page_nav ul{display: flex; justify-content: center;}
-.page_nav ul li{width: 30px; height: 30px; margin: 5px; line-height: 30px; background-color: #E4B95D; border-radius: 200px; font-size: 14px; text-align: center; font-weight: 500; cursor: pointer}
+.page_nav ul li{width: 30px; height: 30px; margin: 5px; line-height: 30px; background-color: #E4B95D; border-radius: 200px; font-size: 14px; text-align: center; font-weight: 500; cursor: pointer;}
 .page_nav .prev{background-image: url(../img/btn_page_back.png); width: 30px; height: 30px; background-repeat: no-repeat; background-position: center; background-size: contain; cursor: pointer}
 .page_nav .nex{background-image: url(../img/btn_page_next.png); width: 30px; height: 30px; background-repeat: no-repeat; background-position: center; background-size: contain; cursor: pointer}
 .page_nav ul li.on{background-color:#000; color:#E4B95D ;  }
@@ -115,13 +120,22 @@ input::-ms-clear {display: none;}
 .WL input:active{border: 2px solid #E4B95D !important;}
 .WL input:focus{border: 2px solid #E4B95D !important;}
 
+/* 알바인증팝업 */
+.layerWrap .WA{width: 30% !important;}
+.WA .searchBox{display: flex; justify-content: center; padding: 30px 0; align-items: center; height: 50px; margin: 20px 0 0 0;}
+.WA .searchBox .search-col{position: relative; margin: 0 15px;}
+.WA .searchBox .search-col span{position: absolute; top: -24px; display: block; font-size: 14px}
+.WA .searchBox .search-col .input{font-size: 14px;}
+.WA .layerCnt .lyIn{ padding:50px 0;}
+.WA input:active,.WA input:focus{border: 2px solid #E4B95D !important;}
 
 #dim{display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 10000; width:100%; height:100%; background: rgba(0,0,0,.4); font-family: inherit; overflow: hidden; }
 #dim.transparentDim {background:none;}
-.btn.pu{color:#fff; border:1px solid #000; background: #000; padding: 15px 0; font-size: 18px; font-weight: bold}
+.btn.pu{color:#fff; border:1px solid #000; background: #000; padding: 15px 0; font-size: 18px; font-weight: bold; transition: 0.2s;}
+.btn.pu:hover{color:#000; border:1px solid #E4B95D; background: #E4B95D; padding: 15px 0; font-size: 18px; font-weight: bold}
 .btn.cu{color:#fff; border:1px solid #E4B95D; background: #E4B95D; padding: 15px 0; font-size: 18px; font-weight: bold}
 .btn.ca{color:#fff; border:1px solid #000; background: #000; padding: 10px 0; font-size: 18px}
-.btn:active{background-color: #302300; border:1px solid #302300;}
+/* .btn:active{background-color: #302300; border:1px solid #302300;} */
 
 
 
@@ -208,7 +222,8 @@ input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner
 .lIner input:focus{border: 2px solid #E4B95D !important;}
 .daram{background-image: url('../img/daramdaram.jpg'); background-size: contain; width: 60px; height: 70px; background-repeat: no-repeat;
     background-position: center; position: fixed; bottom: 50px; right: 100px;}    
-.daram01{ top: 129px; right: px;}
+.daram01{ top: 129px; right: 200px;}
+.daram02{ bottom:129px;left: 200px; background-image: url('../img/da.gif');}
 
 
 

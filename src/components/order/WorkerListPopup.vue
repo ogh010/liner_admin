@@ -29,18 +29,18 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr class="line_hl">
+                                            <tr class="line_hl" v-for="(worker,index) in orderWorkerList" :key="index">
                                                 <td>
-                                                    <p>오가희</p>
+                                                    <p>{{worker.name}}</p>
                                                 </td>
                                                 <td>
-                                                    <p>010-9224-5158</p>
+                                                    <p>{{worker.phone}}</p>
                                                 </td>
                                                 <td>
-                                                    <p>111-111-111-456</p>
+                                                    <p>{{worker.account}}</p>
                                                 </td>
                                                 <td>
-                                                    <button type="button" class="btn">배정하기</button>
+                                                    <button type="button" class="btn" @click="workerAssignBtn(worker.workerId)">배정하기</button>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -49,13 +49,13 @@
                                 <div class="searchBox">
                                     <div class="search-col">
                                         <span>이름</span>
-                                        <input type="text" class="input">
+                                        <input type="text" class="input" v-model="req.name">
                                     </div>
                                     <div class="search-col">
                                         <span>연락처</span>
-                                        <input type="text" class="input">
+                                        <input type="text" class="input" v-model="req.phone">
                                     </div>
-                                    <button type="button" class="btn" >검색</button>
+                                    <button type="button" class="btn" @click="workerList">검색</button>
                                 </div>
                                 <!-- //컨텐츠 -->
                             </div>
@@ -72,6 +72,8 @@
 <script>
 import { mapMutations, mapState } from 'vuex'
 import orderWorkerListService from '../../service/orderWorkerListService'
+import orderWorkerAssignService from '../../service/orderWorkerAssignService'
+
 export default {
     data() {
         return {
@@ -84,7 +86,7 @@ export default {
         }
     },
     methods:{
-        ...mapMutations('order',['SET_TOGGLE_POPUP']),
+        ...mapMutations('order',['SET_TOGGLE_POPUP','SET_ORDER_WORKER_LIST','SET_TOGGLE_POPUP']),
         closeBtn(){
             this.SET_TOGGLE_POPUP()
         },
@@ -97,12 +99,34 @@ export default {
             }
             orderWorkerListService.list(reqData)
             .then((res)=>{
-                console.log(res);
+                this.SET_ORDER_WORKER_LIST(res.workerList)
+            })
+        },
+        workerAssignBtn(workerId){
+            const reqData = {
+                crc:this.req.crc,
+                token:this.req.token,
+                orderId:this.orderId,
+                workerId:workerId
+            }
+            orderWorkerAssignService.assign(reqData)
+            .then((res)=>{
+                this.$emit("infoPass",res.workerInfo)
+                this.SET_TOGGLE_POPUP()
+                // this.$router.go()
             })
         }
     },
+    computed: {
+        ...mapState('order',['orderWorkerList','orderId']),
+        
+    },
     mounted () {
         this.workerList()
+    },
+    destroyed () {
+        this.req.name = "",
+        this.req.phone = ""
     },
 }
 </script>

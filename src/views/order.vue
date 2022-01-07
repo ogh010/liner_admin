@@ -4,7 +4,8 @@
         <div class="content">
             <div class="inner">
                 <h2>거래관리</h2>
-                <div class="daram daram01" ></div>
+                <!-- <div class="daram daram01" ></div>
+                <div class="daram daram02" ></div> -->
             </div>
             <div class="section01">
                 <div class="inner">

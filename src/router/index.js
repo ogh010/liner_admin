@@ -22,7 +22,7 @@ const routes = [
   {
     path: "/listPopup",
     name: "listPopup",
-    component:() => import("../components/order/workerListPopup.vue")
+    component:() => import("../components/worker/WorkerAuthPopup.vue")
   },
 ];
 

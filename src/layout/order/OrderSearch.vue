@@ -113,12 +113,12 @@ export default {
     data: () => ({
         from:   //시작날짜
             {
-                date: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
+                date: (new Date().getFullYear()-1)+'-'+(new Date().getMonth()+1)+'-'+new Date().getDate(),
                 menu: false,
             },
         to:     //종료날짜
             {
-                date: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
+                date: new Date().getFullYear()+'-'+(new Date().getMonth()+1)+'-'+new Date().getDate(),
                 menu: false,
             },
         req:{
@@ -137,7 +137,7 @@ export default {
         SearchBtn() {
             const reqData = {
                 token : this.req.token,
-                from : '2021-01-01',
+                from : this.from.date,
                 to : this.to.date,
                 orderCode : this.req.orderCode,
                 name : this.req.name,

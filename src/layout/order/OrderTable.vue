@@ -5,9 +5,9 @@
                 <col style="width:10%;" />
                 <col style="width:10%;" />
                 <col style="width:10%;" />
-                <col style="width:14%;" />
-                <col style="width:11%;" />
-                <col style="width:11%;" />
+                <col style="width:16%;" />
+                <col style="width:10%;" />
+                <col style="width:10%;" />
                 <col style="width:11%;" />
                 <col style="width:11%;" />
                 <col style="width:12%;" />
@@ -37,7 +37,7 @@
                         <p>{{order.orderCode}}</p>
                     </td>
                     <td>
-                        <p>{{order.place}}</p>
+                        <p>{{order.place}} <b>({{order.brand}})</b></p>
                     </td>
                     <td>
                         <p>{{order.beginTime}} ~ {{order.endTime}}</p>
@@ -46,27 +46,31 @@
                         <p>{{order.name}}</p>
                     </td>
                     <td>
-                        <p>{{order.phone}}</p>
+                        <p>{{phoneNumber(order.phone)}}</p>
                     </td>
                     <td>
                         <p v-if="order.state==0">서비스 신청</p>
-                        <p v-if="order.state==1">입금 완료</p>
-                        <p v-if="order.state==2">배정중</p>
-                        <p v-if="order.state==3">진행중</p>
-                        <p v-if="order.state==4">완료</p>
+                        <p v-else-if="order.state==1">입금 완료</p>
+                        <p v-else-if="order.state==2">배정중</p>
+                        <p v-else-if="order.state==3">진행중</p>
+                        <p v-else-if="order.state==4">완료</p>
                     </td>
                     <td>
                         <template v-if="order.workerInfo">
+                            <div class="display">
+                                <button tbuttonype="button" class="btn update" @click="workerAssignPopup({orderId:order.orderId,index:index})">배정변경</button>
+                                <!-- <button tbuttonype="button" class="btn complete">주문완료</button> -->
+                            </div>
                             <p>{{order.workerInfo}}</p>
                         </template>
                         <template v-else>
-                            <button type="button" class="btn" @click="workerAssignPopup()">배정하기</button>
+                            <button type="button" class="btn" @click="workerAssignPopup({orderId:order.orderId,index:index})">배정하기</button>
                         </template>
                     </td>
                 </tr>
             </tbody>
         </table>
-        <WorkerListPopup v-if="is_show"/>
+        <WorkerListPopup v-if="is_show" @infoPass="infoPass"/>
     </div>
 </template>
 <script>
@@ -75,12 +79,27 @@ import WorkerListPopup from '@/components/order/WorkerListPopup.vue'
 
 export default {
     data:()=>({
+        index:""
     }),
     methods: {
-        ...mapMutations('order',['SET_TOGGLE_POPUP']),
-        workerAssignPopup(){
+        ...mapMutations('order',['SET_TOGGLE_POPUP','SET_ORDER_ID','SET_ORDERLIST_ADD_WOKRERINFO']),
+        workerAssignPopup(payload){
             this.SET_TOGGLE_POPUP()
+            this.SET_ORDER_ID(payload.orderId)
+            this.index = payload.index
         },
+        infoPass(info){
+            let index = this.index
+            let payload = {index,info}
+            this.SET_ORDERLIST_ADD_WOKRERINFO(payload)
+        },
+        phoneNumber(value){ //전화번호 정규식 하이픈
+			value = value.replace(/[^0-9]/g, "");
+			return value.replace(
+				/(^02.{0}|^01.{1}|[0-9]{3})([0-9]+)([0-9]{4})/,
+				"$1-$2-$3"
+			);
+		},
     },
     components: {
         WorkerListPopup

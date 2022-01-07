@@ -2,10 +2,10 @@
     <div class="tableBox">
         <table class="table">
             <colgroup>
+                <col style="width:12%;" />
                 <col style="width:10%;" />
+                <col style="width:12%;" />
                 <col style="width:10%;" />
-                <col style="width:10%;" />
-                <col style="width:14%;" />
                 <col style="width:11%;" />
                 <col style="width:11%;" />
                 <col style="width:11%;" />
@@ -22,75 +22,75 @@
                     <th>카톡 ID</th>
                     <th>알바 횟수</th>
                     <th>인증상태</th>
-                    <th>배정번호</th>
+                    <th>배정상태</th>
                 </tr>
             </thead>
             <tbody>
-                <tr class="line_hl">
+                <tr class="line_hl" v-for="(worker,index) in this.workerList" :key="index">
                     <td>
                         <p>2021.10.01 12:12:12</p>
                     </td>
                     <td>
-                        <p>오가희</p>
+                        <p>{{worker.name}}</p>
                     </td>
                     <td>
-                        <p>010-9224-5158</p>
+                        <p>{{worker.phone}}</p>
                     </td>
                     <td>
-                        <p>신한</p>
+                        <p>{{worker.bank}}</p>
                     </td>
                     <td>
-                        <p>110-213212231</p>
+                        <p>{{worker.account}}</p>
                     </td>
                     <td>
-                        <p>카톡</p>
+                        <p>{{worker.kakaoId}}</p>
                     </td>
                     <td>
-                        <p>10</p>
+                        <p>{{worker.count}}</p>
                     </td>
                     <td>
-                        <button type="button" class="btn">배정하기</button>
+                        <template v-if="worker.authFlag == 0"> 
+                            <button tbuttonype="button" class="btn" @click="authBtn({index:index,workerId:worker.workerId})">인증하기</button>
+                        </template>
+                        <template v-if="worker.authFlag == 1"> 
+                            <p><b>인증완료</b></p>
+                        </template>
                     </td>
                     <td>
-                        <p>20211112131523523</p>
-                    </td>
-                </tr>
-                <tr class="line_hl">
-                    <td>
-                        <p>2021.10.01 12:12:12</p>
-                    </td>
-                    <td>
-                        <p>오가희</p>
-                    </td>
-                    <td>
-                        <p>010-9224-5158</p>
-                    </td>
-                    <td>
-                        <p>신한</p>
-                    </td>
-                    <td>
-                        <p>110-213212231</p>
-                    </td>
-                    <td>
-                        <p>카톡</p>
-                    </td>
-                    <td>
-                        <p>10</p>
-                    </td>
-                    <td>
-                        <p>인증완료</p>
-                    </td>
-                    <td>
-                        <p>20211112131523523</p>
+                        <p v-if="worker.state == 0">미배정</p>
+                        <p v-else-if="worker.state == 1"><b>배정</b></p>
                     </td>
                 </tr>
             </tbody>
         </table>
+        <WorkerAuthPopup v-if="is_show" v-bind:index="index"/>
     </div>
 </template>
 <script>
+import { mapMutations, mapState } from 'vuex'
+import WorkerAuthPopup from '@/components/worker/WorkerAuthPopup.vue'
+
 export default {
-    
+    data() {
+        return {
+            index:""
+        }
+    },
+    computed: {
+        ...mapState('worker',['workerList','is_show']),
+
+    },
+    methods: {
+        ...mapMutations('worker',['SET_TOGGLE_POPUP','SET_WORKER_ID']),
+        authBtn(payload){
+            this.index = payload.index
+            this.SET_TOGGLE_POPUP()
+            this.SET_WORKER_ID(payload.workerId)
+        },
+    },
+    components: {
+        WorkerAuthPopup,
+    },
 }
 </script>
 <style scoped>
