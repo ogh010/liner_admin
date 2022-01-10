@@ -9,8 +9,8 @@
                 <col style="width:10%;" />
                 <col style="width:10%;" />
                 <col style="width:11%;" />
-                <col style="width:11%;" />
-                <col style="width:12%;" />
+                <col style="width:7%;" />
+                <col style="width:16%;" />
             </colgroup>
             <thead>
                 <tr>
@@ -59,7 +59,8 @@
                         <template v-if="order.workerInfo">
                             <div class="display">
                                 <button tbuttonype="button" class="btn update" @click="workerAssignPopup({orderId:order.orderId,index:index})">배정변경</button>
-                                <!-- <button tbuttonype="button" class="btn complete">주문완료</button> -->
+                                <button tbuttonype="button" class="btn complete">배송취소</button>
+                                <button tbuttonype="button" class="btn complete">주문완료</button>
                             </div>
                             <p>{{order.workerInfo}}</p>
                         </template>
