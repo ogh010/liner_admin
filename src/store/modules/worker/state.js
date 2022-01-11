@@ -3,6 +3,6 @@ export default {
   is_show: false,
   workerId:"",
   totalPage: 0,
-  page: 1,
+  page: 0,
   reqData: {}
 };

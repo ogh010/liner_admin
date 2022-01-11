@@ -1,11 +1,11 @@
 <template>
     <div class="page_nav">
         <div class="prev" @click="prevPage(startPage)"></div>
-        <ul v-for="(startPage, index) in this.endPage" :key="index" >
+        <ul v-for="(i, index) in (this.endPage - this.startPage + 1)" :key="index" >
             <!-- <li class="on">1</li> -->
-            <li @click="pageMove(startPage - 1)">{{startPage}}</li>
+            <li @click="pageMove(startPage - 1)">{{i + startPage - 1}}</li>
         </ul>
-        <div class="nex" @click="nextPage(endPage + 1)"></div>
+        <div class="nex" @click="nextPage(endPage)"></div>
     </div>
 </template>
 <script>
@@ -18,16 +18,18 @@ export default {
     computed: {
         ...mapState('worker',['totalPage', 'page', 'reqData']),
         startPage () {
-            return ((this.page - 1) / 10) * 10 + 1
+            return (parseInt((this.page)) / 10) * 10 + 1
         },
         endPage () {
-            let startPage = ((this.page - 1) / 10) * 10 + 1;
-            let endPage = startPage + 10 - 1;
+            let endPage = (parseInt((this.page) / 10)) * 10 + 10;
             if (endPage > this.totalPage) {
                 endPage = this.totalPage;
             }
              return endPage
         }
+    },
+    mounted() {
+        this.SET_CUP_PAGE(0)
     },
     methods: {
         ...mapMutations('worker',['SET_WORKER_LIST', 'SET_TOTAL_PAGE', 'SET_REQ_DATA', 'SET_CUP_PAGE', 'SET_UP_PAGE', 'SET_DOWN_PAGE']),

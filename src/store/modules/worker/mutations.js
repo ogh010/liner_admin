@@ -21,6 +21,6 @@ export default {
   },
   SET_CUP_PAGE(state, curPage) {
     state.reqData.curPage = curPage
-    state.page = curPage + 1
+    state.page = curPage
   }
 };
