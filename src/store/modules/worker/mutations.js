@@ -13,4 +13,14 @@ export default {
   SET_WORKER_AUTH_FLAG(state, index) {
     state.workerList[index].authFlag = 1;
   },
+  SET_TOTAL_PAGE(state, totalPage) {
+    state.totalPage = totalPage
+  },
+  SET_REQ_DATA(state, reqData) {
+    state.reqData = reqData
+  },
+  SET_CUP_PAGE(state, curPage) {
+    state.reqData.curPage = curPage
+    state.page = curPage + 1
+  }
 };

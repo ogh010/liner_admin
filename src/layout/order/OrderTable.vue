@@ -54,12 +54,13 @@
                         <p v-else-if="order.state==2">배정중</p>
                         <p v-else-if="order.state==3">진행중</p>
                         <p v-else-if="order.state==4">완료</p>
+                        <p v-else-if="order.state==5">주문취소</p>
                     </td>
                     <td>
                         <template v-if="order.workerInfo">
                             <div class="display">
                                 <button tbuttonype="button" class="btn update" @click="workerAssignPopup({orderId:order.orderId,index:index})">배정변경</button>
-                                <button tbuttonype="button" class="btn complete">배송취소</button>
+                                <button tbuttonype="button" class="btn complete">주문취소</button>
                                 <button tbuttonype="button" class="btn complete">주문완료</button>
                             </div>
                             <p>{{order.workerInfo}}</p>
