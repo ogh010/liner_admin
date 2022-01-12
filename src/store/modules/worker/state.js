@@ -3,6 +3,6 @@ export default {
   is_show: false,
   workerId:"",
   totalPage: 0,
-  page: 0,
-  reqData: {}
+  activePage: 0, // 현재 페이지 vue 페이징 번호
+  reqData: {} // reqData 
 };

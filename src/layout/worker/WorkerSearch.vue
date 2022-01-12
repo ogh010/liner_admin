@@ -29,7 +29,7 @@ export default {
                 phone:"",
                 crc:"",
                 curPage:0,
-                pageNum:1,
+                pageNum:10,
                 authFlag: 1
             }
         }
@@ -38,7 +38,7 @@ export default {
         this.searchWorkerList()
     },
     methods: {
-        ...mapMutations('worker',['SET_WORKER_LIST', 'SET_TOTAL_PAGE', 'SET_REQ_DATA']),
+        ...mapMutations('worker',['SET_WORKER_LIST', 'SET_TOTAL_PAGE', 'SET_REQ_DATA', 'SET_PAGE']),
         async searchWorkerList() {
             const reqData = {
                 phone:this.req.phone,
@@ -51,6 +51,7 @@ export default {
             this.SET_WORKER_LIST(data.workerList)
             this.SET_TOTAL_PAGE(data.totalPage)
             this.SET_REQ_DATA(reqData)
+            this.SET_PAGE(0)
         }
     },
 }

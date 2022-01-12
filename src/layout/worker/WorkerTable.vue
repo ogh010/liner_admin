@@ -14,27 +14,21 @@
             </colgroup>
             <thead>
                 <tr>
-                    <th>등록일</th>
-                    <th>이름</th>
-                    <th>연락처</th>
-                    <th>은행</th>
-                    <th>계좌번호</th>
-                    <th>카톡 ID</th>
-                    <th>알바 횟수</th>
-                    <th>인증상태</th>
-                    <th>배정상태</th>
+                    <template v-for="(title, index) in titles" >
+                        <th :key="index" v-text="title" />
+                    </template>
                 </tr>
             </thead>
             <tbody>
                 <tr class="line_hl" v-for="(worker,index) in this.workerList" :key="index">
                     <td>
-                        <p>2021.10.01 12:12:12</p>
+                        <p>{{worker.regDt}}</p>
                     </td>
                     <td>
                         <p>{{worker.name}}</p>
                     </td>
                     <td>
-                        <p>{{worker.phone}}</p>
+                        <p>{{phoneNumber(worker.phone)}}</p>
                     </td>
                     <td>
                         <p>{{worker.bank}}</p>
@@ -52,7 +46,7 @@
                         <template v-if="worker.authFlag == 0"> 
                             <button tbuttonype="button" class="btn" @click="authBtn({index:index,workerId:worker.workerId})">인증하기</button>
                         </template>
-                        <template v-if="worker.authFlag == 1"> 
+                        <template v-else-if="worker.authFlag == 1"> 
                             <p><b>인증완료</b></p>
                         </template>
                     </td>
@@ -73,12 +67,15 @@ import WorkerAuthPopup from '@/components/worker/WorkerAuthPopup.vue'
 export default {
     data() {
         return {
-            index:""
+            index:"",
+            titles: ['등록일', '이름', '연락처', '은행', '계좌번호', '카톡 ID', '알바 횟수', '인증상태', '배정상태']
         }
+    },
+    components: {
+        WorkerAuthPopup,
     },
     computed: {
         ...mapState('worker',['workerList','is_show']),
-
     },
     methods: {
         ...mapMutations('worker',['SET_TOGGLE_POPUP','SET_WORKER_ID']),
@@ -87,9 +84,6 @@ export default {
             this.SET_TOGGLE_POPUP()
             this.SET_WORKER_ID(payload.workerId)
         },
-    },
-    components: {
-        WorkerAuthPopup,
     },
 }
 </script>

@@ -4,8 +4,10 @@ import router from './router'
 import store from './store'
 import './common/css/css.css'
 import vuetify from './plugins/vuetify'
+import mixin from './mixin'
 
 Vue.config.productionTip = false
+Vue.mixin(mixin)
 
 new Vue({
   router,

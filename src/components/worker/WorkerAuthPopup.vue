@@ -51,21 +51,20 @@ export default {
         cancelBtn(){
             this.SET_TOGGLE_POPUP()
         },
-        authBtn(){
+        async authBtn(){
             const reqData = {
                 token:this.req.token,
                 workerId:this.workerId,
                 authCode:this.req.authCode
             }
-            console.log(reqData);
-            workerAuthService.auth(reqData)
-            .then((res)=>{
-                console.log(res);
-                this.SET_TOGGLE_POPUP()
-                if(res.resultCode == 0){
-                    this.SET_WORKER_AUTH_FLAG(this.index)
-                }
-            })
+            let data = await workerAuthService.auth(reqData)
+            this.SET_TOGGLE_POPUP()
+            if (data.resultCode == 0) {
+                this.SET_WORKER_AUTH_FLAG(this.index)
+                // 팝업 토스트 처리 해주세요 (내용: 인증에 성공 하였습니다. )
+            } else if (data.resultCode == 100) {
+                // 팝업 토스트 처리 해주세요 (내용: 인증에 실패 하였습니다. )
+            }
         }
     },
     computed: {
