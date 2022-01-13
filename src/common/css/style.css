@@ -40,7 +40,6 @@ input::-ms-clear {display: none;}
 .section01 .searchBox .search-col{position: relative; margin: 0 25px}
 .section01 .searchBox .search-col span{position: absolute; top: -20px; display: block; font-size: 14px}
 .section01 .searchBox .search-col .input{}
-.section01 .searchBox .search-col .spst{position: absolute; display: block; font-size: 14px; top: 10px; left: -40px}
 
 .section02 .tableBox{padding-top: 100px;}
 
@@ -167,14 +166,9 @@ input::-ms-clear {display: none;}
 .tb_t{font-size:16px;line-height:24px; font-size: 16px; margin-left:40px;}
 
 /* select style */
-select {border-radius:0; -webkit-appearance:none; -moz-appearance:none; appearance:none; color:#1a1a1a; cursor:pointer;}
-select::-ms-expand {display:none;}
-.select_box {position:relative; height:36px;}
-.select_box:only-child {width:100%;}
-.select_box select ,.select{width:100%; height:36px; padding-left:9px; padding-right:25px; background:#fff url("../img/ic_dropdown_open.png") no-repeat right 9px center; background-size:12px 7px; border:1px solid #bfbfbf;}
-.select_box select[readonly] {background-color:#edeff2; background-size:12px 7px;opacity: 0.7;}
-.sel_input_btn:first-child, .sel_input_btn:only-child {margin-top:0;}
 
+select{height:36px; padding:0 9px; color:#1a1a1a; border:1px solid #bfbfbf !important; background:#fff !important;border-color: #bfbfbf !important; width: 150px; 
+-webkit-appearance:button !important; cursor: pointer;}
 
 /* input */
 input.input {height:36px; padding:0 9px; color:#1a1a1a; border:1px solid #bfbfbf; background:#fff;border-color: #bfbfbf !important;}
@@ -182,7 +176,7 @@ input::-webkit-input-placeholder {color:#b2b2b2;}
 input:-ms-input-placeholder {color:#b2b2b2;}
 input[readonly] {background:#edeff2; opacity: 0.7;}
 input[value]{color:#0d0d0d;}
-input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner-spin-button {-webkit-appearance:none; appearance:none; margin:0;}
+input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner-spin-button {appearance:none; margin:0;}
 
 
 /*style*/
