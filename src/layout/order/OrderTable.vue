@@ -60,8 +60,8 @@
                         <template v-if="order.workerInfo">
                             <div class="display">
                                 <button tbuttonype="button" class="btn update" @click="workerAssignPopup({orderId:order.orderId,index:index})">배정변경</button>
-                                <button tbuttonype="button" class="btn complete">주문취소</button>
-                                <button tbuttonype="button" class="btn complete">주문완료</button>
+                                <button tbuttonype="button" class="btn complete" @click="SHOW_POP_UP(0); SET_OBJ({workerInfo: order.workerInfo})">주문취소</button>
+                                <button tbuttonype="button" class="btn complete" @click="SHOW_POP_UP(1); SET_OBJ({workerInfo: order.workerInfo})" >주문완료</button>
                             </div>
                             <p>{{order.workerInfo}}</p>
                         </template>
@@ -79,12 +79,14 @@
 import { mapMutations, mapState } from 'vuex'
 import WorkerListPopup from '@/components/order/WorkerListPopup.vue'
 
+
 export default {
     data:()=>({
         index:""
     }),
     methods: {
         ...mapMutations('order',['SET_TOGGLE_POPUP','SET_ORDER_ID','SET_ORDERLIST_ADD_WOKRERINFO']),
+        ...mapMutations('common', ['SHOW_POP_UP', 'SET_OBJ']),
         workerAssignPopup(payload){
             this.SET_TOGGLE_POPUP()
             this.SET_ORDER_ID(payload.orderId)

@@ -10,7 +10,7 @@
                         <div class="layerCnt autoHeight">
                             <div class="lyIn">
                                 <!-- 컨텐츠 -->
-                                <p>팝업</p>
+                                <slot name="content"></slot>
                                 <!-- //컨텐츠 -->
                             </div>
                         </div>
