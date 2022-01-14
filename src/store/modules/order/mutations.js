@@ -11,13 +11,25 @@ export default {
     // 알바배정 리스트 조회
     state.orderWorkerList = orderWorkerList;
   },
-    SET_ORDER_ID(state, orderId) {
-      // 알바 배정시 필요한 orderId 저장
-      state.orderId = orderId;
-    },
-    SET_ORDERLIST_ADD_WOKRERINFO(state, payload) {
-        state.orderList[payload.index].workerInfo = payload.info;
-        state.orderList[payload.index].state = 3
-        console.log(state.orderList[payload.index].workerInfo);
-    }
+  SET_ORDER_ID(state, orderId) {
+    // 알바 배정시 필요한 orderId 저장
+    state.orderId = orderId;
+  },
+  SET_ORDERLIST_ADD_WOKRERINFO(state, payload) {
+    state.orderList[payload.index].workerInfo = payload.info;
+    state.orderList[payload.index].state = 3;
+    console.log(state.orderList[payload.index].workerInfo);
+  },
+  SET_ORDER_STATE_CANCEL(state, index) {
+    state.orderList[index].state = 5;
+  },
+  SET_TOTAL_PAGE(state, totalPage) {
+    state.totalPage = totalPage;
+  },
+  SET_PAGE(state, activePage) {
+    state.activePage = activePage;
+  },
+  SET_REQ_DATA(state, reqData) {
+    state.reqData = reqData;
+  },
 };

@@ -133,7 +133,7 @@ export default {
     }),
 
     methods: {
-        ...mapMutations('order',['SET_ORDER_LIST']),
+        ...mapMutations('order',['SET_ORDER_LIST','SET_TOTAL_PAGE','SET_PAGE','SET_REQ_DATA']),
         SearchBtn() {
             const reqData = {
                 token : this.req.token,
@@ -147,7 +147,10 @@ export default {
             }
             orderListService.list(reqData)
             .then((res)=>{
-                this.SET_ORDER_LIST(res.orderList)  //거래관리 주문리스트 조회
+                this.SET_ORDER_LIST(res.orderList);  //거래관리 주문리스트 조회
+                this.SET_TOTAL_PAGE(res.pageNum); //total 페이지 저장
+                this.SET_PAGE(0) 
+                this.SET_REQ_DATA(reqData)
             })
         }
     },

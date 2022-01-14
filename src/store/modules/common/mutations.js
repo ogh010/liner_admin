@@ -8,5 +8,6 @@ export default {
   },
   SET_OBJ(state, payload) {
     state.obj = payload
-  }
+    console.log(state.obj);
+  },
 };

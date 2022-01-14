@@ -16,6 +16,7 @@
 <script>
 import PopUp from '@/components/common/Popup.vue'
 import { mapState, mapMutations } from 'vuex'
+import orderCancelService from '../service/orderCancelService'
 
 export default {
     name: "PopUpLy",
@@ -27,12 +28,28 @@ export default {
     },
     methods: {
         ...mapMutations('common',['CHANGE_IS_SHOW']),
+        ...mapMutations('order',['SET_ORDER_STATE_CANCEL']),
         submitBtn() {
             this.CHANGE_IS_SHOW(false)
+            if(this.type == 0) {
+                let reqData = {
+                    crc : "",
+                    orderId : this.obj.orderId
+                }
+                orderCancelService.cancel(reqData)
+                .then((res)=>{
+                    console.log(res);
+                    this.SET_ORDER_STATE_CANCEL(this.obj.index)
+                })
+            }
+            else if(this.type == 1) {
+                console.log('주문완료');
+            }
         },
         cancelBtn() {
             this.CHANGE_IS_SHOW(false)
-        }
+        },
+        
     }
 }
 </script>

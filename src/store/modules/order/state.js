@@ -3,4 +3,7 @@ export default {
   is_show: false,
   orderWorkerList: [], //알바 배정 리스트 조회
   orderId: "", //알바배정 orderId
+  totalPage: "",
+  activePage: 0,
+  reqData:{}
 };

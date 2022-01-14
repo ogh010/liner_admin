@@ -51,8 +51,12 @@
                         </template>
                     </td>
                     <td>
-                        <p v-if="worker.state == 0">미배정</p>
-                        <p v-else-if="worker.state == 1"><b>배정</b></p>
+                        <template v-if="worker.state == 0">
+                            <p>미배정</p>
+                        </template>
+                        <template v-else-if="worker.state == 1">
+                            <button tbuttonype="button" class="btn update" @click="assignCancelBtn(worker.workerId)">배정취소</button>
+                        </template>
                     </td>
                 </tr>
             </tbody>
@@ -63,6 +67,8 @@
 <script>
 import { mapMutations, mapState } from 'vuex'
 import WorkerAuthPopup from '@/components/worker/WorkerAuthPopup.vue'
+import assignCancelService from '../../service/assignCancelService'
+
 
 export default {
     data() {
@@ -84,9 +90,15 @@ export default {
             this.SET_TOGGLE_POPUP()
             this.SET_WORKER_ID(payload.workerId)
         },
+        assignCancelBtn(workerId){
+            let reqData = {token:"", workerId:workerId, crc:""}
+            assignCancelService.cancel(reqData)
+            .then((res)=>{
+                console.log(res);
+            })
+        }
     },
 }
 </script>
 <style scoped>
-
 </style>

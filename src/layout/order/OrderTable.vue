@@ -57,17 +57,22 @@
                         <p v-else-if="order.state==5">주문취소</p>
                     </td>
                     <td>
-                        <template v-if="order.workerInfo">
+                        <template v-if="order.state==5">  
+                            <div class="cancelDiv">주문취소</div>
+                            <p>{{order.workerInfo}}</p>
+                        </template>
+                        <template v-else-if="order.workerInfo">
                             <div class="display">
                                 <button tbuttonype="button" class="btn update" @click="workerAssignPopup({orderId:order.orderId,index:index})">배정변경</button>
-                                <button tbuttonype="button" class="btn complete" @click="SHOW_POP_UP(0); SET_OBJ({workerInfo: order.workerInfo})">주문취소</button>
-                                <button tbuttonype="button" class="btn complete" @click="SHOW_POP_UP(1); SET_OBJ({workerInfo: order.workerInfo})" >주문완료</button>
+                                <button tbuttonype="button" class="btn complete" @click="SHOW_POP_UP(0); SET_OBJ({workerInfo: order.workerInfo, orderId: order.orderId, index:index });">주문취소</button>
+                                <button tbuttonype="button" class="btn complete" @click="SHOW_POP_UP(1); SET_OBJ({workerInfo: order.workerInfo});" >주문완료</button>
                             </div>
                             <p>{{order.workerInfo}}</p>
                         </template>
-                        <template v-else>
+                        <template v-else-if="!order.workerInfo">
                             <button type="button" class="btn" @click="workerAssignPopup({orderId:order.orderId,index:index})">배정하기</button>
                         </template>
+                        
                     </td>
                 </tr>
             </tbody>
@@ -107,5 +112,5 @@ export default {
 }
 </script>
 <style scoped>
-
+.cancelDiv{border: 1px solid #000; width: 60px; margin: auto; margin-bottom: 5px; }
 </style>
