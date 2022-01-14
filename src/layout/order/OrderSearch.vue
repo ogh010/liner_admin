@@ -108,17 +108,17 @@
 <script>
 import {mapMutations} from 'vuex'
 import orderListService from '../../service/orderListService'
-
+import moment from 'moment'
 export default {
     data: () => ({
         from:   //시작날짜
             {
-                date: (new Date().getFullYear()-1)+'-'+(new Date().getMonth()+1)+'-'+new Date().getDate(),
+                date: moment().add('-3','M').format('yyyy-MM-DD'),
                 menu: false,
             },
         to:     //종료날짜
             {
-                date: new Date().getFullYear()+'-'+(new Date().getMonth()+1)+'-'+new Date().getDate(),
+                date: moment().add('3','M').format('yyyy-MM-DD'),
                 menu: false,
             },
         req:{
@@ -128,7 +128,7 @@ export default {
             name:"",    //이름
             phone:"",   //연락처
             curPage:0, //현재페이지
-            pageNum:20  //페이지 개수
+            pageNum:10  //페이지 개수
         },
     }),
 
@@ -148,7 +148,7 @@ export default {
             orderListService.list(reqData)
             .then((res)=>{
                 this.SET_ORDER_LIST(res.orderList);  //거래관리 주문리스트 조회
-                this.SET_TOTAL_PAGE(res.pageNum); //total 페이지 저장
+                this.SET_TOTAL_PAGE(res.totalPage); //total 페이지 저장
                 this.SET_PAGE(0) 
                 this.SET_REQ_DATA(reqData)
             })

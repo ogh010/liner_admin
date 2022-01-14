@@ -55,7 +55,7 @@
                             <p>미배정</p>
                         </template>
                         <template v-else-if="worker.state == 1">
-                            <button tbuttonype="button" class="btn update" @click="assignCancelBtn(worker.workerId)">배정취소</button>
+                            <button tbuttonype="button" class="btn update" @click="SHOW_POP_UP(2); SET_OBJ({index, name:worker.name,workerId:worker.workerId });">배정취소</button>
                         </template>
                     </td>
                 </tr>
@@ -85,6 +85,7 @@ export default {
     },
     methods: {
         ...mapMutations('worker',['SET_TOGGLE_POPUP','SET_WORKER_ID']),
+        ...mapMutations('common', ['SHOW_POP_UP', 'SET_OBJ']),
         authBtn(payload){
             this.index = payload.index
             this.SET_TOGGLE_POPUP()

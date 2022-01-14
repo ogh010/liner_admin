@@ -29,7 +29,7 @@ export default {
                 phone:"",
                 crc:"",
                 curPage:0,
-                pageNum:1,
+                pageNum:10,
                 authFlag: 1
             }
         }

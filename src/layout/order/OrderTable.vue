@@ -59,20 +59,21 @@
                     <td>
                         <template v-if="order.state==5">  
                             <div class="cancelDiv">주문취소</div>
-                            <p>{{order.workerInfo}}</p>
                         </template>
-                        <template v-else-if="order.workerInfo">
+                         <template v-else-if="order.state==0">
+                            <button type="button" class="btn" @click="workerAssignPopup({orderId:order.orderId,index:index})">배정하기</button>
+                        </template>
+                        <template v-else-if="order.state==4">
+                            주문완료
+                        </template>
+                        <template v-else>
                             <div class="display">
                                 <button tbuttonype="button" class="btn update" @click="workerAssignPopup({orderId:order.orderId,index:index})">배정변경</button>
                                 <button tbuttonype="button" class="btn complete" @click="SHOW_POP_UP(0); SET_OBJ({workerInfo: order.workerInfo, orderId: order.orderId, index:index });">주문취소</button>
-                                <button tbuttonype="button" class="btn complete" @click="SHOW_POP_UP(1); SET_OBJ({workerInfo: order.workerInfo});" >주문완료</button>
+                                <button tbuttonype="button" class="btn complete" @click="SHOW_POP_UP(1); SET_OBJ({workerInfo: order.workerInfo, orderId: order.orderId, index:index });" >주문완료</button>
                             </div>
                             <p>{{order.workerInfo}}</p>
                         </template>
-                        <template v-else-if="!order.workerInfo">
-                            <button type="button" class="btn" @click="workerAssignPopup({orderId:order.orderId,index:index})">배정하기</button>
-                        </template>
-                        
                     </td>
                 </tr>
             </tbody>

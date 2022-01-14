@@ -23,5 +23,9 @@ export default {
   },
   SET_PAGE(state, activePage) {
     state.activePage = activePage // active page 변경
+  },
+  CHANGE_WORKER_STATE(state, payload) {
+    console.log(payload)
+    state.workerList[payload.index].state = payload.state // 배정상태 변경
   }
 };

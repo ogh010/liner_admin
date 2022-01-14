@@ -20,8 +20,9 @@ export default {
     state.orderList[payload.index].state = 3;
     console.log(state.orderList[payload.index].workerInfo);
   },
-  SET_ORDER_STATE_CANCEL(state, index) {
-    state.orderList[index].state = 5;
+  CHANGE_ORDER_STATE (state, payload) {
+    console.log('CHANGE_ORDER_STATE')
+    state.orderList[payload.index].state = payload.state;
   },
   SET_TOTAL_PAGE(state, totalPage) {
     state.totalPage = totalPage;
@@ -31,5 +32,8 @@ export default {
   },
   SET_REQ_DATA(state, reqData) {
     state.reqData = reqData;
+  },
+  SET_CUP_PAGE(state, curPage) {
+    state.reqData.curPage = curPage // requets page 변경
   },
 };
