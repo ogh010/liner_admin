@@ -8,11 +8,25 @@ const routes = [
     path: "/",
     name: "order",
     component: () => import("../views/order.vue"),
+    beforeEnter (to, from, next) {
+      if (!localStorage.getItem('ln_co')) {
+        next({ name: 'login'})
+      } else {
+        next()
+      }
+    }
   },
   {
     path: "/worker",
     name: "worker",
     component: () => import("../views/worker.vue"),
+    beforeEnter (to, from, next) {
+      if (!localStorage.getItem('ln_co')) {
+        next({ name: 'login'})
+      } else {
+        next()
+      }
+    }
   },
   {
     path: "/login",
@@ -22,7 +36,14 @@ const routes = [
   {
     path: "/listPopup",
     name: "listPopup",
-    component:() => import("../components/worker/WorkerAuthPopup.vue")
+    component:() => import("../components/worker/WorkerAuthPopup.vue"),
+    beforeEnter (to, from, next) {
+      if (!localStorage.getItem('ln_co')) {
+        next({ name: 'login'})
+      } else {
+        next()
+      }
+    }
   },
 ];
 
